@@ -13,9 +13,6 @@ dependencies {
     // TestNG
     testImplementation("org.testng:testng:7.7.1")
 
-    // Selenide for UI Testing
-    testImplementation("com.codeborne:selenide:6.19.1")
-
     // REST Assured for API Testing
     testImplementation("io.rest-assured:rest-assured:5.4.0")
 

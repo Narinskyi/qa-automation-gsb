@@ -30,3 +30,14 @@
 - **TestNG**
 - **Selenium WebDriver (Selenide)**
 - **REST Assured**  
+## Test Run Configurations
+
+
+### **How to run tests**
+To run tests locally using **Chrome** browser, set the following in your `config.properties` file:
+
+```properties
+browser=chrome
+local=true
+```
+
