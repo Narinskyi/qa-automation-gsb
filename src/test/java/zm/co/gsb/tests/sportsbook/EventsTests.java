@@ -1,5 +1,6 @@
-package zm.co.gsb.tests;
+package zm.co.gsb.tests.sportsbook;
 
+import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,8 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@Epic("Sportsbook")
+@Feature("Events")
 public class EventsTests {
     private static final Logger logger = LogManager.getLogger(EventsTests.class);
 
@@ -28,10 +31,17 @@ public class EventsTests {
     }
 
     @Test
+    @Description("Upcoming events odds are displayed within the acceptable range (1.5 to 3.34), 'Upcoming' button is active")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLinks({
+            @TmsLink("EVENTS_TC_01"),
+            @TmsLink("EVENTS_TC_02")
+    })
     public void testUpcomingEventsOdds() {
         driver.get(ConfigManager.getProperty("baseUrl"));
 
-        assertThat(driver.findElement(SportsBookMenu.Button.UPCOMING).getAttribute("class"),
+        assertThat("Upcoming button should be active",
+                driver.findElement(SportsBookMenu.Button.UPCOMING).getAttribute("class"),
                 equalTo("au-s-s"));
 
         List<Double> odds = driver.findElements(SportsTable.Upcoming.ODDS_CONTAINER)
@@ -41,9 +51,9 @@ public class EventsTests {
                 .filter(value -> value >= 1.5 && value <= 3.34)
                 .toList();
 
-        assertThat(odds, not(empty()));
+        assertThat("Odds list should not be empty", odds, not(empty()));
 
-        logger.info(odds);
+        logger.info("Odds: {}", odds);
     }
 
     @AfterMethod
@@ -51,4 +61,3 @@ public class EventsTests {
         DriverFactory.quitDriver();
     }
 }
-
