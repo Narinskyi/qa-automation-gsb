@@ -30,14 +30,32 @@
 - **TestNG**
 - **Selenium WebDriver (Selenide)**
 - **REST Assured**  
-## Test Run Configurations
 
+## How to Run the Tests
 
-### **How to run tests**
-To run tests locally using **Chrome** browser, set the following in your `config.properties` file:
+### Configuration
+- **Config File:**  
+  All configurable settings (like `baseUrl`, `browser`, `timeout`, etc.) are located in: 
+src/main/resources/config.properties
 
-```properties
-browser=chrome
-local=true
+- **Logging:**  
+  Log settings (console & file) are set in: src/main/resources/log4j2.xml
+
+**TestNG Suite:**  
+The test suite run config file is located at: src/test/resources/testng.xml
+
+- The suite is configured to run tests in parallel using the `parallel` attribute and `thread-count`.
+
+### Running Tests with Gradle
+Execute from the project root:
+
+- **Run all tests:**
+```bash
+./gradlew test
+```
+
+- **Generate Allure report:**
+```bash
+./gradlew allureServe
 ```
 
