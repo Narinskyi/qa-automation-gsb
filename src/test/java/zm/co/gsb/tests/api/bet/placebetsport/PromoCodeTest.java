@@ -8,7 +8,7 @@ import zm.co.gsb.api.ApiClient;
 import zm.co.gsb.data.models.api.requests.ValidatePromoCodeRequest;
 import zm.co.gsb.data.models.api.responses.ValidatePromoCodeResponse;
 
-public class @Issue("BUG-1234") {
+public class PromoCodeTest {
 
     private static final ApiClient apiClient = new ApiClient();
 
