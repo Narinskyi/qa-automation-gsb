@@ -19,25 +19,26 @@ public class DriverFactory {
         if (driver.get() == null) {
             String browser = ConfigManager.getProperty("browser");
             logger.info("Initializing WebDriver for browser: {}", browser);
+
+            long timeout = Long.parseLong(ConfigManager.getProperty("timeout"));
+
             WebDriver webDriver;
             switch (browser.toLowerCase()) {
                 case "chrome":
                     System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-                    webDriver = new ChromeDriver();
+                    webDriver = new WebDriverDecorator(new ChromeDriver(), Duration.ofSeconds(timeout));
                     logger.info("ChromeDriver initiated successfully");
                     break;
                 case "firefox":
                     System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
-                    webDriver = new FirefoxDriver();
+                    webDriver = new WebDriverDecorator(new FirefoxDriver(), Duration.ofSeconds(timeout));
                     logger.info("FirefoxDriver initiated successfully");
                     break;
                 default:
                     logger.error("Unsupported browser: {}", browser);
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
-            long timeout = Long.parseLong(ConfigManager.getProperty("timeout"));
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
-            logger.info("Implicit wait set to {} seconds", timeout);
+
             driver.set(webDriver);
         }
         return driver.get();
