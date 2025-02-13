@@ -47,7 +47,7 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driver.get() != null) {
             logger.info("Quitting the WebDriver");
-            driver.get().quit();
+            driver.get().close();
             driver.remove();
         } else {
             logger.warn("No WebDriver instance found to quit");

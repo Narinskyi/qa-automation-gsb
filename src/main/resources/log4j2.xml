@@ -9,6 +9,11 @@
         </File>
     </Appenders>
     <Loggers>
+        <!-- Logger to suppress lower-level logs from io.netty -->
+        <Logger name="io.netty" level="error" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>

@@ -1,14 +1,23 @@
 package zm.co.gsb.tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import zm.co.gsb.config.ConfigManager;
 import zm.co.gsb.driver.DriverFactory;
 
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 public class EventsTests {
+    private static final Logger logger = LogManager.getLogger(EventsTests.class);
 
     private WebDriver driver;
 
@@ -18,11 +27,22 @@ public class EventsTests {
     }
 
     @Test
-    public void testHomePageTitle() {
+    public void testUpcomingEventsOdds() {
         driver.get(ConfigManager.getProperty("baseUrl"));
-        String title = driver.getTitle();
-        Assert.assertNotNull(title, "Page title should not be null");
-        System.out.println("Page title is: " + title);
+
+        assertThat(driver.findElement(By.cssSelector("li#menusportbookprematch")).getAttribute("class"),
+                equalTo("au-s-s"));
+
+        List<Double> odds = driver.findElements(By.cssSelector("span.odds.none"))
+                .stream()
+                .map(WebElement::getText)
+                .map(Double::parseDouble)
+                .filter(value -> value >= 1.5 && value <= 3.34)
+                .toList();
+
+        assertThat(odds, not(empty()));
+
+        logger.info(odds);
     }
 
     @AfterMethod
