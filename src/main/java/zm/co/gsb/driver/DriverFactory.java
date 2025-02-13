@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import zm.co.gsb.config.ConfigManager;
 
 import java.time.Duration;
@@ -28,10 +28,10 @@ public class DriverFactory {
                     webDriver = new WebDriverDecorator(new ChromeDriver(), Duration.ofSeconds(timeout));
                     logger.info("ChromeDriver initialized successfully");
                     break;
-                case "firefox":
-                    System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
-                    webDriver = new WebDriverDecorator(new FirefoxDriver(), Duration.ofSeconds(timeout));
-                    logger.info("FirefoxDriver initialized successfully");
+                case "edge":
+                    System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
+                    webDriver = new WebDriverDecorator(new EdgeDriver(), Duration.ofSeconds(timeout));
+                    logger.info("EdgeDriver initialized successfully");
                     break;
                 default:
                     logger.error("Unsupported browser: {}", browser);
