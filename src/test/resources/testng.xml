@@ -5,12 +5,12 @@
     </listeners>
     <test name="UI Tests">
         <classes>
-            <class name="zm.co.gsb.tests.sportsbook.EventsTests"/>
+            <class name="zm.co.gsb.tests.ui.sportsbook.EventsTests"/>
         </classes>
     </test>
     <test name="API Tests">
         <classes>
-            <class name="zm.co.gsb.tests.APITests"/>
+            <class name="zm.co.gsb.tests.api.bet.placebetsport.PromoCodeTest"/>
         </classes>
     </test>
 </suite>

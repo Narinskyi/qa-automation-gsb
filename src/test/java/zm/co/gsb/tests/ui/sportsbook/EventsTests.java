@@ -1,4 +1,4 @@
-package zm.co.gsb.tests.sportsbook;
+package zm.co.gsb.tests.ui.sportsbook;
 
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
