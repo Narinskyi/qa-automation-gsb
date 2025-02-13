@@ -51,7 +51,7 @@ Execute from the project root:
 
 - **Run all tests:**
 ```bash
-./gradlew test
+./gradlew clean test
 ```
 
 - **Generate Allure report:**
