@@ -19,51 +19,51 @@ public class WebDriverDecorator implements WebDriver {
     private final WebDriverWait wait;
 
     /**
-     * Decorates an existing WebDriver with explicit waits.
+     * Decorator of an existing WebDriver using explicit waits.
      *
-     * @param driver  the original WebDriver instance
-     * @param timeout the maximum time to wait for conditions
+     * @param driver  the WebDriver instance to decorate
+     * @param timeout explicit wait in seconds
      */
     public WebDriverDecorator(WebDriver driver, Duration timeout) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeout);
-        logger.info("Initialized WebDriverDecorator with timeout: {} seconds", timeout.getSeconds());
+        logger.info("Initialized WebDriverDecorator with: {} seconds timeout", timeout.getSeconds());
     }
 
-    @Step("Find element using locator: {0}")
+    @Step("Find element: {0}")
     @Override
     public WebElement findElement(By by) {
-        logger.info("Waiting for visibility of element: {}", by);
+        logger.info("Waiting for visibility of: {}", by);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    @Step("Find elements using locator: {0}")
+    @Step("Find elements: {0}")
     @Override
     public List<WebElement> findElements(By by) {
-        logger.info("Waiting for presence of at least one element: {}", by);
+        logger.info("Waiting for presence of: {}", by);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
         return driver.findElements(by);
     }
 
-    @Step("Click on element located by: {0}")
+    @Step("Click on element: {0}")
     public void click(By by) {
-        logger.info("Clicking on element: {}", by);
+        logger.info("Clicking on: {}", by);
         findElement(by).click();
     }
 
-    @Step("Send keys '{1}' to element located by: {0}")
+    @Step("Send keys '{1}' to element: {0}")
     public void sendKeys(By by, CharSequence... keysToSend) {
-        logger.info("Sending keys {} to element: {}", keysToSend, by);
+        logger.info("Sending keys {} to: {}", keysToSend, by);
         findElement(by).sendKeys(keysToSend);
     }
 
-    @Step("Get text from element located by: {0}")
+    @Step("Get text of: {0}")
     public String getText(By by) {
-        logger.info("Getting text from element: {}", by);
+        logger.info("Getting text from: {}", by);
         return findElement(by).getText();
     }
 
-    // Delegate methods from WebDriver to the wrapped instance
+    // Delegating standard methods to WebDriver
 
     @Override
     @Step("Navigate to URL: {0}")
@@ -88,16 +88,15 @@ public class WebDriverDecorator implements WebDriver {
     }
 
     @Override
-    @Step("Close the current window")
+    @Step("Close current window")
     public void close() {
         logger.info("Closing the current window");
         driver.close();
     }
 
     @Override
-    @Step("Quit the WebDriver")
+    @Step("Quit the driver")
     public void quit() {
-        logger.info("Quitting the WebDriver");
         driver.quit();
     }
 

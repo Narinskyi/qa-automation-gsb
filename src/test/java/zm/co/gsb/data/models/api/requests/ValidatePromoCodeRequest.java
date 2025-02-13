@@ -10,7 +10,6 @@ public class ValidatePromoCodeRequest {
     @JsonProperty("CurrencyId")
     private int currencyId;
 
-    // Constructor for deserialization
     public ValidatePromoCodeRequest() {
     }
 

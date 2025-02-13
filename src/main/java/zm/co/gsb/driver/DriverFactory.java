@@ -12,13 +12,12 @@ import java.time.Duration;
 
 public class DriverFactory {
     private static final Logger logger = LogManager.getLogger(DriverFactory.class);
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    @Step("Initializing WebDriver for browser: {0}")
     public static WebDriver getDriver() {
         if (driver.get() == null) {
             String browser = ConfigManager.getProperty("browser");
-            logger.info("Initializing WebDriver for browser: {}", browser);
+            logger.info("Initializing WebDriver for: {}", browser);
 
             long timeout = Long.parseLong(ConfigManager.getProperty("timeout"));
 
@@ -27,12 +26,12 @@ public class DriverFactory {
                 case "chrome":
                     System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
                     webDriver = new WebDriverDecorator(new ChromeDriver(), Duration.ofSeconds(timeout));
-                    logger.info("ChromeDriver initiated successfully");
+                    logger.info("ChromeDriver initialized successfully");
                     break;
                 case "firefox":
                     System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
                     webDriver = new WebDriverDecorator(new FirefoxDriver(), Duration.ofSeconds(timeout));
-                    logger.info("FirefoxDriver initiated successfully");
+                    logger.info("FirefoxDriver initialized successfully");
                     break;
                 default:
                     logger.error("Unsupported browser: {}", browser);
@@ -44,14 +43,14 @@ public class DriverFactory {
         return driver.get();
     }
 
-    @Step("Quitting the WebDriver")
+    @Step("Quit the WebDriver")
     public static void quitDriver() {
         if (driver.get() != null) {
             logger.info("Quitting the WebDriver");
             driver.get().close();
             driver.remove();
         } else {
-            logger.warn("No WebDriver instance found to quit");
+            logger.warn("No WebDriver found to quit.");
         }
     }
 }

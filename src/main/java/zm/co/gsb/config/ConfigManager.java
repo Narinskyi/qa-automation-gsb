@@ -15,21 +15,21 @@ public class ConfigManager {
         try (InputStream input = ConfigManager.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (input != null) {
                 properties.load(input);
-                logger.info("Configuration loaded successfully from config.properties");
+                logger.info("config.properties file loaded successfully");
             } else {
-                logger.error("Unable to find config.properties");
-                throw new RuntimeException("Unable to find config.properties");
+                logger.error("Could not find config.properties");
+                throw new RuntimeException("Could not find find config.properties");
             }
         } catch (IOException e) {
-            logger.error("Failed to load configuration", e);
-            throw new RuntimeException("Failed to load configuration", e);
+            logger.error("Could not load configuration", e);
+            throw new RuntimeException("Could not load configuration", e);
         }
     }
 
     public static String getProperty(String key) {
         String value = properties.getProperty(key);
         if (value == null) {
-            logger.warn("Property '{}' not found in config.properties", key);
+            logger.warn("Property: {} is not in config.properties file", key);
         }
         return value;
     }

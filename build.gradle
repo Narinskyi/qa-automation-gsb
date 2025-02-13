@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    // Allure plugin for generating and serving reports
     id 'io.qameta.allure' version '2.11.2'
 }
 
@@ -15,26 +14,19 @@ repositories {
 }
 
 dependencies {
-    // TestNG
     testImplementation 'org.testng:testng:7.7.0'
 
-    // Selenium WebDriver for UI
     implementation 'org.seleniumhq.selenium:selenium-java:4.9.1'
 
-    // REST Assured for API testing
     implementation 'io.rest-assured:rest-assured:5.3.0'
 
-    // Log4j2 for logging
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
 
-    // Allure TestNG for reporting
     implementation 'io.qameta.allure:allure-testng:2.20.1'
 
-    // Jackson for JSON serialization/deserialization
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 
-    //Hamcrest Matchers for assertions
     testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
@@ -44,7 +36,6 @@ test {
     }
 }
 
-// Gradle task to run tests via command line
 tasks.register('runTests', Test) {
     group = "verification"
     description = "Runs all tests"

@@ -97,11 +97,9 @@ public class ValidatePromoCodeResponse {
         @JsonProperty("errorCodeDescription")
         private String errorCodeDescription;
 
-        // Default constructor
         public Result() {
         }
 
-        // Getters and Setters
         public String getErrorDescription() {
             return errorDescription;
         }
@@ -164,11 +162,9 @@ public class ValidatePromoCodeResponse {
         @JsonProperty("isValid")
         private boolean isValid;
 
-        // Default constructor
         public Data() {
         }
 
-        // Getters and Setters
         public boolean isValid() {
             return isValid;
         }

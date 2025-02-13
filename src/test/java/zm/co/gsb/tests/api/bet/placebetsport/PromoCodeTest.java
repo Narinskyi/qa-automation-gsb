@@ -7,8 +7,11 @@ import org.testng.annotations.Test;
 import zm.co.gsb.api.ApiClient;
 import zm.co.gsb.data.models.api.requests.ValidatePromoCodeRequest;
 import zm.co.gsb.data.models.api.responses.ValidatePromoCodeResponse;
+import zm.co.gsb.tests.api.AbstractApiTest;
 
-public class PromoCodeTest {
+@Epic("Sports API")
+@Feature("ValidatePromoCode")
+public class PromoCodeTest extends AbstractApiTest {
 
     private static final ApiClient apiClient = new ApiClient();
 
@@ -44,13 +47,12 @@ public class PromoCodeTest {
         ValidatePromoCodeResponse response = apiClient.postAsObject(
                 "/dynamic/execute/Sport/ValidatePromoCode",
                 request,
-                ValidatePromoCodeResponse.class
-        );
+                ValidatePromoCodeResponse.class);
 
-        Assert.assertTrue(response.isSuccessfull(), "API call should be successful");
+        Assert.assertTrue(response.isSuccessfull(), "API call was not successful");
 
         Assert.assertEquals(response.getData().isValid(), expectedValid,
-                "The promo code validity did was not correct");
+                "The promo code validity did was not as expected");
     }
 }
 

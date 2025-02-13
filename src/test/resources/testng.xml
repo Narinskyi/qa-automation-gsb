@@ -6,7 +6,7 @@
     <test name="UI Tests">
         <classes>
             <class name="zm.co.gsb.tests.ui.sportsbook.EventsTests"/>
-            <class name="zm.co.gsb.tests.ui.sportsbook.LoginTest"/>
+            <class name="zm.co.gsb.tests.ui.login.LoginTest"/>
         </classes>
     </test>
     <test name="API Tests">
