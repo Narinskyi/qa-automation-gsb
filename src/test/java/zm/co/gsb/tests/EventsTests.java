@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import zm.co.gsb.config.ConfigManager;
 import zm.co.gsb.driver.DriverFactory;
 
-public class UITests {
+public class EventsTests {
 
     private WebDriver driver;
 

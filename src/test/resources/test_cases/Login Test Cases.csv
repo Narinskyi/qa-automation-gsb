@@ -1,0 +1,40 @@
+Test Case ID,Test Case Description,Pre-Condition,Test Steps,Expected Result,Status
+LOGIN_TC_01,Verify default country code selection,Login form is loaded,"1. Open the login form.
+2. Observe the country code dropdown.",The dropdown should have +260 selected by default,Not Executed
+LOGIN_TC_02,Verify country code dropdown functionality,Login form is loaded,"1. Open the login form.
+2. Click on the country code dropdown.
+3. Select a different country code (e.g., +1).",The selected country code should change to the chosen value,Not Executed
+LOGIN_TC_03,Verify phone field accepts valid numeric input,Login form is loaded,"1. Open the login form.
+2. Enter a valid phone number (e.g., 123456789).",Phone field should accept numeric input without error,Not Executed
+LOGIN_TC_04,Verify phone field rejects non-numeric input,Login form is loaded,"1. Open the login form.
+2. Enter alphabetic characters or special symbols in the phone field.",The system should either restrict non-numeric input or display a validation error,Not Executed
+LOGIN_TC_05,Verify password visibility toggle shows password,Login form is loaded,"1. Open the login form.
+2. Enter a password.
+3. Click the password visibility toggle.",The password should be shown in plain text,Not Executed
+LOGIN_TC_06,Verify password visibility toggle re-masks the password,Login form is loaded,"1. Open the login form.
+2. Enter a password.
+3. Click the visibility toggle to show the password.
+4. Click the toggle again.",The password should be masked (hidden) again,Not Executed
+LOGIN_TC_07,Verify login with valid credentials,User has a valid account,"1. Open the login form.
+2. Enter a valid phone number and corresponding password.
+3. Click the login button.",User should be logged in and redirected to the dashboard/home page,Not Executed
+LOGIN_TC_08,Verify error on login with invalid credentials,Login form is loaded,"1. Open the login form.
+2. Enter an invalid phone number or password.
+3. Click the login button.","Display an error message such as 'Invalid credentials' (descision table used here)
+1. valid username/invalid password
+3. invalid username/invalid password",Not Executed
+LOGIN_TC_09,Verify Forgot Password? link functionality,Login form is loaded,"1. Open the login form.
+2. Click on the 'Forgot Password?' link.",User should be redirected to the password recovery page,Not Executed
+LOGIN_TC_10,Verify REGISTER link functionality,Login form is loaded,"1. Open the login form.
+2. Click on the 'REGISTER' link.",User should be redirected to the registration page,Not Executed
+LOGIN_TC_11,Verify login with empty phone field,Login form is loaded,"1. Open the login form.
+2. Leave the phone field empty.
+3. Enter a valid password.
+4. Click the login button.",Display a validation error for the missing phone number,Not Executed
+LOGIN_TC_12,Verify login with empty password field,Login form is loaded,"1. Open the login form.
+2. Enter a valid phone number.
+3. Leave the password field empty.
+4. Click the login button.",Display a validation error for the missing password,Not Executed
+LOGIN_TC_13,Verify login with both fields empty,Login form is loaded,"1. Open the login form.
+2. Leave both phone and password fields empty.
+3. Click the login button.",Display validation errors for both phone and password fields,Not Executed

@@ -29,7 +29,10 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
 
     // Allure TestNG adapter for reporting
-    testImplementation 'io.qameta.allure:allure-testng:2.20.1'
+    implementation 'io.qameta.allure:allure-testng:2.20.1'
+
+    // Jackson for JSON serialization/deserialization
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 }
 
 test {

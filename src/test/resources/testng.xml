@@ -5,7 +5,7 @@
     </listeners>
     <test name="UI Tests">
         <classes>
-            <class name="zm.co.gsb.tests.UITests"/>
+            <class name="zm.co.gsb.tests.EventsTests"/>
         </classes>
     </test>
     <test name="API Tests">

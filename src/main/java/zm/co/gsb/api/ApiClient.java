@@ -1,5 +1,6 @@
 package zm.co.gsb.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -8,9 +9,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import zm.co.gsb.config.ConfigManager;
 
+import java.io.IOException;
+
 public class ApiClient {
     private static final Logger logger = LogManager.getLogger(ApiClient.class);
     private static final String BASE_URL = ConfigManager.getProperty("apiBaseUrl");
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public ApiClient() {
         RestAssured.baseURI = BASE_URL;
@@ -35,6 +39,20 @@ public class ApiClient {
         Response response = request.post(endpoint);
         logger.info("POST request to {} returned status code: {}", endpoint, response.getStatusCode());
         return response;
+    }
+
+    @Step("Perform POST request to endpoint: {0} with body: {1} and deserialize response into {2}")
+    public <T> T postAsObject(String endpoint, Object body, Class<T> responseClass) {
+        logger.info("Performing POST request to endpoint: {} with body: {} and deserializing response to {}", endpoint, body, responseClass.getSimpleName());
+        Response response = post(endpoint, body);
+        try {
+            T result = objectMapper.readValue(response.asString(), responseClass);
+            logger.info("Deserialization successful: {}", result);
+            return result;
+        } catch (IOException e) {
+            logger.error("Deserialization failed for endpoint: {}", endpoint, e);
+            throw new RuntimeException(e);
+        }
     }
 }
 
