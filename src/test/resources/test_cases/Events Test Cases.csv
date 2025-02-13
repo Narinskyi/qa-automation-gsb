@@ -1,0 +1,5 @@
+Test Case ID,Test Case Description,Pre-Condition,Test Steps,Expected Result,Status
+EVENTS_TC_01,Upcoming events tab is active by default,Open the application,1. Observe the active event tab,Upcoming is active by default,Passed
+EVENTS_TC_02,Verify the upcoming events table,Open the application,1. Observe the upcoming events table,"1. The matches in the table display correct odds for every filter: 3 groups (as received from the backened)
+2. The matches are separated based on the time
+3. ""Show More"" button is displayed at the bottom",Passed
